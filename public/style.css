@@ -4138,3 +4138,10 @@ button:focus-visible,
         transform: none !important;
     }
 }
+
+/* Navegación de vuelta en fichas de luchadores */
+.ficha-nav {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0 30px;
+}

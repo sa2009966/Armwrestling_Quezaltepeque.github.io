@@ -1,0 +1,118 @@
+{
+  "nombre": "VENDETTAS",
+  "kicker": "EVENTO DE",
+  "lema": "RIVALIDAD • RESPETO • FUERZA",
+  "fecha": "Domingo 11 de Octubre, 2026",
+  "horario": "1:00 PM — 4:00 PM",
+  "lugar": "Parque Central Norberto Morán",
+  "lugarDetalle": "Quezaltepeque, La Libertad",
+  "estado": "Finalizado",
+  "subtitle": "Las viejas rivalidades vuelven a la mesa. ¿Estás preparado?",
+  "matches": [
+    {
+      "label": "VENDETTA",
+      "fighters": [
+        {
+          "href": "/detalles-tops/top1",
+          "foto": "/fotos/top-1.webp",
+          "alt": "Henry",
+          "nombre": "Henry",
+          "top": "TOP 1",
+          "resultado": "Ganador"
+        },
+        {
+          "href": "/detalles-tops/top3",
+          "foto": "/fotos/top-3.webp",
+          "alt": "Duvan",
+          "nombre": "Duvan",
+          "top": "TOP 3",
+          "resultado": "Perdedor"
+        }
+      ]
+    },
+    {
+      "label": "VENDETTA",
+      "fighters": [
+        {
+          "href": "/detalles-tops/top4",
+          "foto": "/fotos/top-4.webp",
+          "alt": "Daniel",
+          "nombre": "Michael",
+          "top": "NEW TOP 4",
+          "resultado": "Ganador"
+        },
+        {
+          "href": "/detalles-tops/top6",
+          "foto": "/fotos/top-6.webp",
+          "alt": "Michael",
+          "nombre": "Daniel",
+          "top": "TOP 6",
+          "resultado": "Perdedor"
+        }
+      ]
+    },
+    {
+      "label": "VENDETTA",
+      "fighters": [
+        {
+          "href": "/detalles-tops/top5",
+          "foto": "/fotos/top-5.webp",
+          "alt": "Adonis",
+          "nombre": "Diego",
+          "top": "NEW TOP 5",
+          "resultado": "Ganador"
+        },
+        {
+          "href": "/detalles-tops/top7",
+          "foto": "/fotos/top-7.webp",
+          "alt": "Diego",
+          "nombre": "Adonis",
+          "top": "TOP 7",
+          "resultado": "Perdedor"
+        }
+      ]
+    },
+    {
+      "label": "VENDETTA",
+      "fighters": [
+        {
+          "href": "/detalles-tops/top8",
+          "foto": "/fotos/top-8.webp",
+          "alt": "Diego",
+          "nombre": "Isaias",
+          "top": "NEW TOP 8",
+          "resultado": "Ganador"
+        },
+        {
+          "href": "/detalles-tops/top10",
+          "foto": "/fotos/top-10.webp",
+          "alt": "Axel",
+          "nombre": "Axel",
+          "top": "TOP 10",
+          "resultado": "Perdedor"
+        }
+      ]
+    },
+    {
+      "label": "VENDETTA",
+      "fighters": [
+        {
+          "href": "/detalles-tops/top9",
+          "foto": "/fotos/top-9.webp",
+          "alt": "Diego",
+          "nombre": "Steven",
+          "top": "TOP 9",
+          "resultado": "Ganador"
+        },
+        {
+          "href": "#",
+          "foto": "/fotos/Douglas.webp",
+          "alt": "Axel",
+          "nombre": "Douglas",
+          "top": "SIN TOP",
+          "resultado": "Perdedor"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout
+  title="Contactos | Armwrestling Quezaltepeque"
+  description="Únete al club de lucha de brazos de Quezaltepeque. Contáctanos por WhatsApp, TikTok o Instagram y entrena con nosotros los domingos en La Libertad."
+  canonical="/5contactos"
+  footer="eventos"
+>
+  <main>
+    <section class="redes fade-in">
+      <h1>Únete al club</h1>
+      <p>Solicita información sobre nuestros programas y conviértete en parte de nuestra familia.</p>
+
+      <div class="contacto1 fade-in">
+        <div class="icon-contacto1"><i class="ri-whatsapp-line"></i></div>
+        <p class="p-1">Respuesta rápida</p>
+        <h3>¿Prefieres hablar directamente?</h3>
+        <p class="p-2">Escríbenos por WhatsApp y te respondemos en minutos. Es la forma más rápida de resolver tus
+          dudas
+          y poder unirte a nuestra comunidad.</p>
+        <a href={site.contactos.whatsapp} target="_blank" rel="noopener" class="btn9"><i
+            class="ri-whatsapp-line"></i> Hablar por WhatsApp</a>
+      </div>
+      <div class="contacto2 fade-in">
+        <div class="icon-contacto2"><i class="ri-tiktok-fill"></i></div>
+        <p class="p-1">Síguenos en TikTok</p>
+        <h3>Armwrestling Quezaltepeque</h3>
+        <p class="p-2">Contáctenos a nuestra página de TikTok para ver más información.</p>
+        <a href={site.contactos.tiktok} target="_blank" rel="noopener" class="btn10"><i
+            class="ri-tiktok-fill"></i> Ver
+          perfil de TikTok</a>
+      </div>
+      <div class="contacto3 fade-in">
+        <div class="icon-contacto3"><i class="ri-instagram-line"></i></div>
+        <p class="p-1">Síguenos en Instagram</p>
+        <h3>Armwrestling Quezaltepeque</h3>
+        <p class="p-2">Contáctenos a nuestra página de Instagram para ver más información.</p>
+        <a href={site.contactos.instagram} target="_blank" rel="noopener" class="btn11"><i
+            class="ri-instagram-line"></i> Ver perfil de Instagram</a>
+      </div>
+    </section>
+
+    <section class="redes2 fade-in">
+      <div class="contacto21">
+        <div class="icon-contacto21"><i class="ri-map-pin-line"></i></div>
+        <p class="p-1">Ubicación</p>
+        <p class="p-2">Quezaltepeque, El Salvador.</p>
+      </div>
+      <div class="contacto22">
+        <div class="icon-contacto22"><i class="ri-time-line"></i></div>
+        <p class="p-1">Horario de entrenamientos</p>
+        <p class="p-2">Domingos, 1:00 PM – 4:00 PM</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

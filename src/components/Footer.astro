@@ -1,0 +1,39 @@
+---
+import site from '../data/site.json';
+
+interface Props {
+  variant?: 'simple' | 'eventos';
+}
+
+const { variant = 'simple' } = Astro.props;
+---
+
+{variant === 'simple' ? (
+  <footer>
+    <p>{site.footer}</p>
+  </footer>
+) : (
+  <footer class="eventos-footer">
+    <div class="eventos-footer-top">
+      <div class="eventos-footer-brand">
+        <img src="/fotos/logo1x1.webp" width="957" height="987" alt="Armwrestling Quezaltepeque">
+        <div><b>ARMWRESTLING</b><small>QUEZALTEPEQUE</small></div>
+      </div>
+
+      <div class="eventos-footer-socials">
+        <a href={site.contactos.instagram} target="_blank" rel="noopener" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+        <a href={site.contactos.tiktok} target="_blank" rel="noopener" aria-label="TikTok"><i class="ri-tiktok-line"></i></a>
+        <a href={site.contactos.whatsapp} target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a>
+      </div>
+
+      <div class="eventos-footer-place">
+        <span><i class="ri-map-pin-line"></i> Quezaltepeque, La Libertad</span>
+        <small>Fuerza · Disciplina · Honor</small>
+      </div>
+    </div>
+
+    <div class="eventos-footer-bottom">
+      <p>© 2026 Armwrestling Quezaltepeque <br> x <br> Level Up Sites <br> Todos los derechos reservados.</p>
+    </div>
+  </footer>
+)}

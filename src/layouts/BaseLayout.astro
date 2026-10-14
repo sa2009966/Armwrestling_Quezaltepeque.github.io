@@ -1,0 +1,130 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  footer?: 'simple' | 'eventos';
+}
+
+const { title, description, canonical, ogImage = '/fotos/logo1x1.webp', footer = 'simple' } = Astro.props;
+const url = `${site.dominio}${canonical}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <link rel="icon" href="/fotos/logo1x1.webp">
+    <link rel="canonical" href={url}>
+    <meta name="description" content={description}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content={`${site.dominio}${ogImage}`}>
+    <meta property="og:url" content={url}>
+    <meta property="og:locale" content="es_SV">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css">
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer variant={footer} />
+    <script>
+      // ---- Animaciones de aparición al hacer scroll ----
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-in').forEach(el => {
+        if (prefersReduced) {
+          el.classList.add('visible');
+        } else {
+          observer.observe(el);
+        }
+      });
+
+      // ---- Entrada escalonada de tarjetas ----
+      const grupos = ['.container-tops', '.container-entrenamientos', '.combates-mobile', '.estadisticas2'];
+      grupos.forEach(sel => {
+        document.querySelectorAll(sel + ' > .fade-in').forEach((el, i) => {
+          if (prefersReduced) return;
+          el.style.transitionDelay = (i * 90) + 'ms';
+          el.addEventListener('transitionend', function liberar(e) {
+            if (e.target !== el) return;
+            el.style.transitionDelay = '';
+            el.removeEventListener('transitionend', liberar);
+          });
+        });
+      });
+
+      // ---- Menú ----
+      const menu = document.getElementById('menu');
+      const icon = document.getElementById('icon');
+      const overlay = document.getElementById('overlay');
+
+      if (icon) {
+        icon.setAttribute('role', 'button');
+        icon.tabIndex = 0;
+        icon.setAttribute('aria-expanded', 'false');
+        icon.setAttribute('aria-controls', 'menu');
+        icon.setAttribute('aria-label', 'Abrir menú');
+
+        icon.addEventListener('click', () => toggleMenu());
+        icon.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMenu();
+          }
+        });
+      }
+      if (overlay) overlay.addEventListener('click', () => closeMenu());
+
+      function setMenuState(abierto) {
+        if (!icon) return;
+        icon.setAttribute('aria-expanded', String(abierto));
+        icon.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+        document.body.style.overflow = abierto ? 'hidden' : '';
+      }
+
+      function toggleMenu() {
+        const abierto = menu.classList.toggle('active');
+        overlay.classList.toggle('active', abierto);
+        icon.innerHTML = abierto ? '✖' : '☰';
+        setMenuState(abierto);
+      }
+
+      function closeMenu() {
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+        icon.innerHTML = '☰';
+        setMenuState(false);
+      }
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
+      });
+
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    </script>
+  </body>
+</html>

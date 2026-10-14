@@ -1,0 +1,566 @@
+[
+  {
+    "id": 1,
+    "slug": "top1",
+    "nombre": "Henry",
+    "pais": "El Salvador",
+    "peso": "90kg",
+    "altura": "1.75 m",
+    "edad": "15 años",
+    "estilo": "Toproll",
+    "mano": "derecha",
+    "ranking": "1°",
+    "record": {
+      "marcador": "3-2",
+      "porcentaje": "60%"
+    },
+    "stats": {
+      "fuerza": 90,
+      "velocidad": 87,
+      "resistencia": 88,
+      "tecnica": 87
+    },
+    "combates": [
+      {
+        "rival": "vs. Duvan.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "4 - 0",
+        "fecha": "11/10/2026"
+      },
+      {
+        "rival": "vs. William.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "4 - 0",
+        "fecha": "2/08/2026"
+      },
+      {
+        "rival": "vs. Duvan.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "01/04/2026"
+      },
+      {
+        "rival": "vs. Duvan.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "2 - 3",
+        "fecha": "08/02/2026"
+      },
+      {
+        "rival": "vs. William.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 2",
+        "fecha": "01/02/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-1.webp",
+      "width": 1024,
+      "height": 1436,
+      "alt": "Henry, top 1 de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Henry | Top 1 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Henry, top 1 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 2,
+    "slug": "top2",
+    "nombre": "William",
+    "pais": "El Salvador",
+    "peso": "72kg",
+    "altura": "1.73 m",
+    "edad": "16 años",
+    "estilo": "Hook",
+    "mano": "derecha",
+    "ranking": "2°",
+    "record": {
+      "marcador": "3-3",
+      "porcentaje": "50%"
+    },
+    "stats": {
+      "fuerza": 89,
+      "velocidad": 85,
+      "resistencia": 85,
+      "tecnica": 89
+    },
+    "combates": [
+      {
+        "rival": "vs. Henry.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 4",
+        "fecha": "02/08/2026"
+      },
+      {
+        "rival": "vs. Mariano.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "1 - 3",
+        "fecha": "07/04/2026"
+      },
+      {
+        "rival": "vs. Marcus.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "08/02/2026"
+      },
+      {
+        "rival": "vs. Jefferson.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 3",
+        "fecha": "01/02/2026"
+      },
+      {
+        "rival": "vs. Henry.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "2 - 0",
+        "fecha": "01/02/2026"
+      },
+      {
+        "rival": "vs. Gabriel.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "4 - 0",
+        "fecha": "11/01/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-2.webp",
+      "width": 992,
+      "height": 1586,
+      "alt": "William, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "William | Top 2 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de William, top 2 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 3,
+    "slug": "top3",
+    "nombre": "Duvan",
+    "pais": "El Salvador",
+    "peso": "100kg",
+    "altura": "1.71 m",
+    "edad": "19 años",
+    "estilo": "Hook",
+    "mano": "derecha",
+    "ranking": "3°",
+    "record": {
+      "marcador": "1-2",
+      "porcentaje": "33%"
+    },
+    "stats": {
+      "fuerza": 84,
+      "velocidad": 83,
+      "resistencia": 85,
+      "tecnica": 87
+    },
+    "combates": [
+      {
+        "rival": "vs. Henry.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 4",
+        "fecha": "11/10/2026"
+      },
+      {
+        "rival": "vs. Henry.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 3",
+        "fecha": "01/04/2026"
+      },
+      {
+        "rival": "vs. Henry.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 2",
+        "fecha": "08/02/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-3.webp",
+      "width": 907,
+      "height": 1159,
+      "alt": "Duvan, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Duvan | Top 3 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Duvan, top 3 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 4,
+    "slug": "top4",
+    "nombre": "Michael",
+    "pais": "El Salvador",
+    "peso": "87kg",
+    "altura": "1.75 m",
+    "edad": "18 años",
+    "estilo": "Hook",
+    "mano": "derecha",
+    "ranking": "4°",
+    "record": {
+      "marcador": "2-0",
+      "porcentaje": "100%"
+    },
+    "stats": {
+      "fuerza": 85,
+      "velocidad": 83,
+      "resistencia": 84,
+      "tecnica": 83
+    },
+    "combates": [
+      {
+        "rival": "vs. Daniel.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "11/10/2026"
+      },
+      {
+        "rival": "vs. Diego.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "02/08/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-4.webp",
+      "width": 848,
+      "height": 1264,
+      "alt": "Michael, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Michael | Top 6 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Michael, top 6 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 5,
+    "slug": "top5",
+    "nombre": "Diego",
+    "pais": "El Salvador",
+    "peso": "61kg",
+    "altura": "1.72 m",
+    "edad": "16 años",
+    "estilo": "Toproll",
+    "mano": "derecha",
+    "ranking": "5°",
+    "record": {
+      "marcador": "1-4",
+      "porcentaje": "20%"
+    },
+    "stats": {
+      "fuerza": 80,
+      "velocidad": 88,
+      "resistencia": 82,
+      "tecnica": 83
+    },
+    "combates": [
+      {
+        "rival": "vs. Adonis.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "11/10/2026"
+      },
+      {
+        "rival": "vs. Michael.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 3",
+        "fecha": "02/08/2026"
+      },
+      {
+        "rival": "vs. Adonis.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 4",
+        "fecha": "08/03/2026"
+      },
+      {
+        "rival": "vs. Daniel.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 3",
+        "fecha": "08/02/2026"
+      },
+      {
+        "rival": "vs. Daniel.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 3",
+        "fecha": "11/01/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-5.webp",
+      "width": 803,
+      "height": 1245,
+      "alt": "Diego, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Diego | Top 7 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Diego, top 7 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 6,
+    "slug": "top6",
+    "nombre": "Daniel",
+    "pais": "El Salvador",
+    "peso": "58kg",
+    "altura": "1.65 m",
+    "edad": "15 años",
+    "estilo": "Toproll",
+    "mano": "derecha",
+    "ranking": "6°",
+    "record": {
+      "marcador": "2-1",
+      "porcentaje": "67%"
+    },
+    "stats": {
+      "fuerza": 77,
+      "velocidad": 82,
+      "resistencia": 79,
+      "tecnica": 83
+    },
+    "combates": [
+      {
+        "rival": "vs. Michael.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 3",
+        "fecha": "11/10/2026"
+      },
+      {
+        "rival": "vs. Diego.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "08/02/2026"
+      },
+      {
+        "rival": "vs. Diego.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "11/01/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-6.webp",
+      "width": 865,
+      "height": 1215,
+      "alt": "Daniel, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Daniel | Top 4 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Daniel, top 4 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 7,
+    "slug": "top7",
+    "nombre": "Adonis",
+    "pais": "El Salvador",
+    "peso": "75kg",
+    "altura": "1.74 m",
+    "edad": "15 años",
+    "estilo": "Toproll",
+    "mano": "derecha",
+    "ranking": "7°",
+    "record": {
+      "marcador": "1-1",
+      "porcentaje": "50%"
+    },
+    "stats": {
+      "fuerza": 79,
+      "velocidad": 93,
+      "resistencia": 80,
+      "tecnica": 83
+    },
+    "combates": [
+      {
+        "rival": "vs. Diego.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 3",
+        "fecha": "11/10/2026"
+      },
+      {
+        "rival": "vs. Diego.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "4 - 0",
+        "fecha": "08/03/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-7.webp",
+      "width": 953,
+      "height": 1600,
+      "alt": "Adonis, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Adonis | Top 5 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Adonis, top 5 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 8,
+    "slug": "top8",
+    "nombre": "Isaias",
+    "pais": "El Salvador",
+    "peso": "70kg",
+    "altura": "1.70 m",
+    "edad": "16 años",
+    "estilo": "Toproll",
+    "mano": "derecha",
+    "ranking": "8°",
+    "record": {
+      "marcador": "2-0",
+      "porcentaje": "100%"
+    },
+    "stats": {
+      "fuerza": 79,
+      "velocidad": 83,
+      "resistencia": 81,
+      "tecnica": 84
+    },
+    "combates": [
+      {
+        "rival": "vs. Axel.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "11/10/2026"
+      },
+      {
+        "rival": "vs. Endrick.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "02/08/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-8.webp",
+      "width": 892,
+      "height": 1147,
+      "alt": "Isaias, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Isaias | Top 10 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Isaias, top 10 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 9,
+    "slug": "top9",
+    "nombre": "Steven",
+    "pais": "El Salvador",
+    "peso": "75kg",
+    "altura": "1.74 m",
+    "edad": "15 años",
+    "estilo": "Toproll",
+    "mano": "derecha",
+    "ranking": "9°",
+    "record": {
+      "marcador": "1-0",
+      "porcentaje": "100%"
+    },
+    "stats": {
+      "fuerza": 77,
+      "velocidad": 80,
+      "resistencia": 80,
+      "tecnica": 78
+    },
+    "combates": [
+      {
+        "rival": "vs. Lobo.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "02/08/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-9.webp",
+      "width": 1096,
+      "height": 1600,
+      "alt": "Steven, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Steven | Top 9 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Steven, top 9 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  },
+  {
+    "id": 10,
+    "slug": "top10",
+    "nombre": "Axel",
+    "pais": "El Salvador",
+    "peso": "56kg",
+    "altura": "1.60 m",
+    "edad": "19 años",
+    "estilo": "Hook",
+    "mano": "derecha",
+    "ranking": "10°",
+    "record": {
+      "marcador": "2-1",
+      "porcentaje": "67%"
+    },
+    "stats": {
+      "fuerza": 77,
+      "velocidad": 79,
+      "resistencia": 84,
+      "tecnica": 82
+    },
+    "combates": [
+      {
+        "rival": "vs. Isaias.",
+        "clase": "loss",
+        "resultado": "Derrota",
+        "marcador": "0 - 3",
+        "fecha": "11/10/2026"
+      },
+      {
+        "rival": "vs. Douglas.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 0",
+        "fecha": "02/08/2026"
+      },
+      {
+        "rival": "vs. Endrick.",
+        "clase": "win",
+        "resultado": "Victoria",
+        "marcador": "3 - 1",
+        "fecha": "01/04/2026"
+      }
+    ],
+    "foto": {
+      "src": "/fotos/top-10.webp",
+      "width": 1114,
+      "height": 1399,
+      "alt": "Axel, atleta de Armwrestling Quezaltepeque"
+    },
+    "seo": {
+      "title": "Axel | Top 8 de Armwrestling Quezaltepeque",
+      "description": "Consulta el perfil de Axel, top 8 de Armwrestling Quezaltepe, y revisa los resultados registrados en las vendettas del club de lucha de brazos de El Salvador."
+    }
+  }
+]

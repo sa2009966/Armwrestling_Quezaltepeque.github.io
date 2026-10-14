@@ -1,0 +1,22 @@
+[
+  {
+    "icono": "ri-arrow-up-long-fill",
+    "titulo": "FUERZA",
+    "texto": "Ejercicios enfocados en fuerza máxima y resistencia."
+  },
+  {
+    "icono": "ri-brain-line",
+    "titulo": "TÉCNICA",
+    "texto": "Mejora tu técnica con entrenamiento especializado."
+  },
+  {
+    "icono": "ri-team-line",
+    "titulo": "COMUNIDAD",
+    "texto": "Entrena y crece junto a personas que comparten tu pasión."
+  },
+  {
+    "icono": "ri-trophy-line",
+    "titulo": "COMPETICIÓN",
+    "texto": "Prepárate para competir y poner en alto a Quezaltepeque."
+  }
+]

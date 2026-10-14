@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopCard from '../components/TopCard.astro';
+import tops from '../data/tops.json';
+---
+
+<BaseLayout
+  title="Ranking de lucha de brazos | Armwrestling Quezaltepeque"
+  description="Conoce el ranking de los atletas más fuertes de Armwrestling Quezaltepeque. Consulta perfiles, récords y detalles de cada luchador del club."
+  canonical="/3top"
+  ogImage="/fotos/top-banner.webp"
+>
+  <main>
+    <section class="top-inicio">
+      <div class="container-top">
+        <div class="container-texto-top">
+          <span class="tag">
+            <h5>Ranking del club</h5>
+          </span>
+          <hr>
+          <h1>TOPS MÁS FUERTES</h1>
+          <span class="tag">El ranking se gana en la mesa.</span>
+          <p>En Quezaltepeque, el respeto se gana brazo a brazo. <br> Este es el ranking actual de los atletas más
+            fuertes del club.</p>
+          <a href="#top" class="btn7 fade-in"><i class="ri-function-line"></i> Ver tops </a>
+        </div>
+      </div>
+      <div class="top-inicio-img">
+        <img fetchpriority="high" src="/fotos/top-banner.webp" width="1386" height="752" alt="Atletas entrenando lucha de brazos" decoding="async">
+      </div>
+    </section>
+
+    <section id="top" class="inicio-tops">
+      <div class="container-tops">
+        {tops.map(top => <TopCard top={top} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

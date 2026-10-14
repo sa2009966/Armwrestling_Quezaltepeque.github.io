@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import tops from '../../data/tops.json';
+import site from '../../data/site.json';
+
+export function getStaticPaths() {
+  return tops.map(top => ({
+    params: { slug: top.slug },
+    props: { top },
+  }));
+}
+
+const { top } = Astro.props;
+const stats = [
+  { label: 'Fuerza', valor: top.stats.fuerza, icono: 'ri-arrow-up-long-fill' },
+  { label: 'Velocidad', valor: top.stats.velocidad, icono: 'ri-flashlight-line' },
+  { label: 'Resistencia', valor: top.stats.resistencia, icono: 'ri-shield-line' },
+  { label: 'Técnica', valor: top.stats.tecnica, icono: 'ri-brain-line' },
+];
+const fichas = tops.map(t => ({ href: `/detalles-tops/${t.slug}`, nombre: t.nombre, activo: t.slug === top.slug }));
+---
+
+<BaseLayout
+  title={top.seo.title}
+  description={top.seo.description}
+  canonical={`/detalles-tops/${top.slug}`}
+  ogImage={top.foto.src}
+>
+  <main>
+    <section class="info-1">
+      <div class="estaditicas1">
+        <h3>{top.nombre}</h3>
+        <p><img src="/fotos/flag-sv.svg" width="1005" height="567" alt="bandera de El Salvador"> {top.pais}</p>
+        <p>Peso: <br> <span>{top.peso}</span></p>
+        <p>Altura: <br> <span>{top.altura}</span></p>
+        <p>Edad: <br> <span>{top.edad}</span></p>
+        <p>Estilo: <br> <span>{top.estilo}</span></p>
+        <p>Mano dominante: <br> <span>{top.mano}</span></p>
+      </div>
+      <div class="foto-detalles">
+        <img src={top.foto.src} width={top.foto.width} height={top.foto.height} alt={top.foto.alt}>
+      </div>
+      <div class="posicionamiento">
+        <div class="ranking">
+          <p>Ranking: <br> <span>{top.ranking}</span></p>
+        </div>
+        <div class="record">
+          <p>Récord:<br> <span>{top.record.marcador}</span> <br> <span>({top.record.porcentaje})</span></p>
+        </div>
+      </div>
+      <div class="estaditicas-mobil">
+        <h3>{top.nombre}</h3>
+        <p><img src="/fotos/flag-sv.svg" width="1005" height="567" alt="bandera de El Salvador"> {top.pais}</p>
+        <p>Peso: <span>{top.peso}</span></p>
+        <p>Altura: <span>{top.altura}</span></p>
+        <p>Edad: <span>{top.edad}</span></p>
+        <p>Estilo: <span>{top.estilo}</span></p>
+        <p>Mano dominante: <span>{top.mano}</span></p>
+      </div>
+    </section>
+
+    <section class="info-2">
+      <div class="estadisticas2">
+        {stats.map(s => (
+          <div class="estaditica fade-in">
+            <div class="estadistica-icon"><i class={s.icono}></i></div>
+            <div class="estadistica-texto">
+              {s.label}: <br>
+              <p>{s.valor}<span>/100</span></p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="historial-combates">
+        <div class="card">
+          <h2>Historial de combates</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Rival</th>
+                <th>Resultado</th>
+                <th>Marcador</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              {top.combates.map(c => (
+                <tr>
+                  <td>{c.rival}</td>
+                  <td><span class={c.clase}>{c.resultado}</span></td>
+                  <td>{c.marcador}</td>
+                  <td>{c.fecha}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="combates-mobile">
+        {top.combates.map(c => (
+          <div class="combate-card fade-in">
+            <h3>{c.rival}</h3>
+            <p><strong>Resultado:</strong> <span class={c.clase}>{c.resultado}</span></p>
+            <p><strong>Marcador:</strong> {c.marcador}</p>
+            <p><strong>Fecha:</strong> {c.fecha}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="ficha-nav">
+      <a href="/3top" class="btn-detalles"><i class="ri-arrow-left-line"></i> Volver al ranking</a>
+    </section>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: top.nombre,
+    description: top.seo.description,
+    image: `${site.dominio}${top.foto.src}`,
+    nationality: 'Salvadoran',
+    memberOf: {
+      '@type': 'SportsOrganization',
+      name: site.nombre,
+      url: `${site.dominio}/`
+    }
+  })} />
+</BaseLayout>

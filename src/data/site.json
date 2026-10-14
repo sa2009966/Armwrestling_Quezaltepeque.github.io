@@ -1,0 +1,24 @@
+{
+  "nombre": "Armwrestling Quezaltepeque",
+  "dominio": "https://armwrestling-quezaltepeque.pages.dev",
+  "contactos": {
+    "whatsapp": "https://wa.me/50378683237?text=Hola,%20quiero%20información",
+    "tiktok": "https://www.tiktok.com/@armwrestling.quez?lang=es-419",
+    "instagram": "https://www.instagram.com/armwrestling_quezaltepeque/",
+    "grupoWhatsApp": "https://chat.whatsapp.com/E02Mu2N7I8b0r3AfnXBSxt"
+  },
+  "ubicacion": {
+    "titulo": "Quezaltepeque, La Libertad",
+    "detalle": "Parque Central Norberto Moran, Quezaltepeque",
+    "coords": {
+      "lat": 13.83106425332837,
+      "lng": -89.27216705459757,
+      "zoom": 15
+    }
+  },
+  "horarios": {
+    "principal": "Domingos de 1:00 PM - 4:00 PM",
+    "nota": "(Con un patrón quincenal, aunque pueden surgir ajustes)"
+  },
+  "footer": "© Level Up Sites X Armwrestling Quezaltepeque | Todos los derechos reservados"
+}

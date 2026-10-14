@@ -1,0 +1,22 @@
+---
+interface Props {
+  top: {
+    id: number;
+    slug: string;
+    nombre: string;
+    ranking: string;
+    peso: string;
+    foto: { src: string; width: number; height: number; alt: string };
+  };
+}
+
+const { top } = Astro.props;
+---
+
+<div class="top-1 fade-in">
+  <div class="numero-top">{top.ranking}</div>
+  <img src={top.foto.src} width={top.foto.width} height={top.foto.height} alt={top.foto.alt} loading="lazy" decoding="async">
+  <h2>{top.nombre}</h2>
+  <p>Peso: <span>{top.peso}</span></p>
+  <a href={`/detalles-tops/${top.slug}`} class="btn-detalles">Ver detalles</a>
+</div>
