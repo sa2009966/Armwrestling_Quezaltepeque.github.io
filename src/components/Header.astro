@@ -1,0 +1,23 @@
+---
+const paginas = [
+  { href: '/', texto: 'Inicio' },
+  { href: '/2nosotros', texto: 'Nosotros' },
+  { href: '/3top', texto: 'Top' },
+  { href: '/4eventos', texto: 'Eventos' },
+  { href: '/5contactos', texto: 'Contactos' },
+];
+const actual = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header>
+  <div class="container-logo"><img src="/fotos/logo1x1.webp" width="957" height="987" alt="Logo de Armwrestling Quezaltepeque" class="logo"></div>
+  <div class="container-icon-menu" id="icon">☰</div>
+  <div class="container-menu" id="menu">
+    {paginas.map(p => (
+      <a href={p.href} class="paginas" aria-current={actual === p.href ? 'page' : undefined}>
+        <h3>{p.texto}</h3>
+      </a>
+    ))}
+  </div>
+  <div id="overlay" class="overlay"></div>
+</header>

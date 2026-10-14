@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopCard from '../components/TopCard.astro';
+import tops from '../data/tops.json';
+import pilares from '../data/pilares.json';
+import site from '../data/site.json';
+
+const top5 = tops.slice(0, 5);
+const { lat, lng, zoom } = site.ubicacion.coords;
+---
+
+<BaseLayout
+  title="Armwrestling El Salvador | Quezaltepeque"
+  description="Conoce Armwrestling Quezaltepeque, un club de lucha de brazos en El Salvador. Consulta entrenamientos, ranking, eventos y cómo unirte al equipo en La Libertad."
+  canonical="/"
+>
+  <main>
+    <section class="inicio fade-in">
+      <div class="inicio-img">
+        <div class="inicio-texto">
+          <h1 class="seo-hero-title">ARMWRESTLING<br>EN EL SALVADOR</h1><span>Y HONOR</span>
+          <p>Club de lucha de brazos en Quezaltepeque, La Libertad. Entrena armwrestling en El Salvador con enfoque en fuerza, técnica y competición.</p>
+        </div>
+        <a href="/5contactos" class="btn fade-in"><i class="ri-function-line"></i> Unirse al club </a>
+        <a href="/2nosotros" class="btn2 fade-in">Conócenos <i class="ri-send-ins-line"></i></a>
+      </div>
+    </section>
+
+    <section class="inicio-familia">
+      <h3>SOMOS MÁS QUE UN DEPORTE,</h3>
+      <h2>SOMOS FAMILIA.</h2>
+      <p>Un club unido por la pasión del Armwrestling, <br>
+        aquí encontrarás un lugar para superarte, <br>
+        hacer amigos y representar a Quezaltepeque con orgullo.</p>
+      <a href="/5contactos" class="btn3 fade-in">Únete <i class="ri-send-ins-line"></i></a>
+    </section>
+
+    <section class="seo-context" aria-labelledby="seo-context-title">
+      <div class="seo-context-inner">
+        <p class="seo-context-kicker">COMUNIDAD SALVADOREÑA</p>
+        <h2 id="seo-context-title">Armwrestling en El Salvador: conoce la lucha de brazos</h2>
+        <p><strong>Armwrestling Quezaltepeque</strong> es un club de lucha de brazos ubicado en Quezaltepeque, La Libertad, El Salvador. Entrenamos técnica, fuerza y control, y trabajamos para que nuestros atletas progresen y compitan con responsabilidad.</p>
+        <p>Si buscas dónde practicar <strong>armwrestling en El Salvador</strong> o quieres conocer más sobre la <strong>lucha de brazos en El Salvador</strong>, puedes consultar el ranking de atletas, las vendettas y las actividades del club. Nuestro punto de entrenamiento es el Parque Central Norberto Morán, en Quezaltepeque. Escríbenos para confirmar la próxima sesión antes de desplazarte, ya que el horario puede cambiar.</p>
+        <div class="seo-context-links">
+          <a href="/5contactos">Consultar entrenamientos</a>
+          <a href="/3top">Ver ranking del club</a>
+        </div>
+        <div class="seo-context-faq">
+          <h3>¿Armwrestling y lucha de brazos son lo mismo?</h3>
+          <p>Sí. Armwrestling es el término en inglés para lucha de brazos, también conocida popularmente como pulso. Es un deporte en el que la técnica, el agarre, el control y la fuerza importan.</p>
+          <h3>¿Dónde entrena Armwrestling Quezaltepeque?</h3>
+          <p>Entrenamos en Quezaltepeque, departamento de La Libertad, El Salvador. Contacta al club para confirmar la ubicación y el horario actual antes de asistir.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="inicio-entrenamiento">
+      <h2>¿QUÉ ENCONTRARÁS EN NUESTRO CLUB?</h2>
+      <h3>Entrena con nosotros</h3>
+      <div class="container-entrenamientos">
+        {pilares.map(p => (
+          <>
+            <div class="entrenamiento fade-in">
+              <i class={p.icono}></i>
+              <h3>{p.titulo}</h3>
+              <p>{p.texto}</p>
+            </div>
+            <hr>
+          </>
+        ))}
+      </div>
+    </section>
+
+    <section class="inicio-tops">
+      <div class="container-top-texto">
+        <h2>CONOCE NUESTRO TOP</h2>
+        <a href="/3top" class="btn4">Ver más</a>
+      </div>
+      <div class="container-tops">
+        {top5.map(top => <TopCard top={top} />)}
+      </div>
+    </section>
+
+    <section class="inicio-ubicación">
+      <div class="container-ubicación-texto fade-in">
+        <h2>UBICACIÓN</h2>
+        <h3><i class="ri-map-pin-line"></i> {site.ubicacion.titulo}</h3>
+        <p>{site.ubicacion.detalle}</p>
+        <h3><i class="ri-time-line"></i> Horarios de entrenamientos</h3>
+        <p>{site.horarios.principal} <br>
+          {site.horarios.nota}</p>
+      </div>
+      <div id="mapa" class="fade-in"></div>
+    </section>
+
+    <section class="inicio-final">
+      <div class="container-final">
+        <div class="container-final-texto fade-in">
+          <h2>LISTO PARA UNIRTE?</h2>
+          <p>Ven a entrenar con nosotros <br> y descubre de lo que eres capaz.</p>
+          <a href="/5contactos" class="btn6">Contactar <i class="ri-send-ins-line"></i></a>
+        </div>
+        <div class="container-final-logo fade-in">
+          <img src="/fotos/logo1x1.webp" width="957" height="987" alt="">
+        </div>
+        <hr>
+        <div class="container-final-contactos fade-in">
+          <h3>SÍGUENOS</h3>
+          <div class="social-icons fade-in">
+            <a class="instagram" href={site.contactos.instagram} target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="ri-instagram-line"></i>
+            </a>
+            <a class="tiktok" href={site.contactos.tiktok} target="_blank" rel="noopener" aria-label="TikTok">
+              <i class="ri-tiktok-fill"></i>
+            </a>
+          </div>
+          <h3>CONTÁCTANOS</h3>
+          <p><i class="ri-whatsapp-line"></i> 7868-3237</p>
+          <p><i class="ri-map-pin-line"></i> Quezaltepeque, La Libertad</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'SportsOrganization',
+    '@id': `${site.dominio}/#organization`,
+    name: site.nombre,
+    alternateName: 'Club de lucha de brazos Quezaltepeque',
+    url: `${site.dominio}/`,
+    logo: `${site.dominio}/fotos/logo1x1.webp`,
+    sport: 'Armwrestling',
+    areaServed: 'Quezaltepeque, La Libertad, El Salvador',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Quezaltepeque',
+      addressRegion: 'La Libertad',
+      addressCountry: 'SV'
+    },
+    sameAs: [site.contactos.instagram, site.contactos.tiktok]
+  })} />
+
+  <script>
+    import L from 'leaflet';
+    import 'leaflet/dist/leaflet.css';
+
+    const map = L.map('mapa').setView([13.83106425332837, -89.27216705459757], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.marker([13.83106425332837, -89.27216705459757]).addTo(map)
+      .bindPopup('Aquí entrenamos')
+      .openPopup();
+  </script>
+</BaseLayout>
