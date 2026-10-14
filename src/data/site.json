@@ -20,5 +20,8 @@
     "principal": "Domingos de 1:00 PM - 4:00 PM",
     "nota": "(Con un patrón quincenal, aunque pueden surgir ajustes)"
   },
-  "footer": "© Level Up Sites X Armwrestling Quezaltepeque | Todos los derechos reservados"
+  "footer": "© Level Up Sites X Armwrestling Quezaltepeque | Todos los derechos reservados",
+  "form": {
+    "accessKey": "TU_ACCESS_KEY_DE_WEB3FORMS"
+  }
 }

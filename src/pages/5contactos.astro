@@ -55,5 +55,77 @@ import site from '../data/site.json';
         <p class="p-2">Domingos, 1:00 PM – 4:00 PM</p>
       </div>
     </section>
+
+    <section class="form-section fade-in" id="formulario">
+      <p class="p-1">Formulario</p>
+      <h2>Escríbenos</h2>
+      <p class="form-sub">Déjanos tu mensaje y te respondemos lo antes posible.</p>
+
+      <form id="form-contacto" class="fade-in" novalidate>
+        <input type="hidden" name="access_key" value={site.form.accessKey}>
+        <input type="checkbox" name="botcheck" class="hidden-botcheck" style="display:none" tabindex="-1">
+
+        <div class="form-grid">
+          <label>
+            <span>Nombre</span>
+            <input type="text" name="nombre" required maxlength="80" placeholder="Tu nombre">
+          </label>
+          <label>
+            <span>WhatsApp o correo</span>
+            <input type="text" name="contacto" required maxlength="120" placeholder="Cómo te contactamos">
+          </label>
+        </div>
+        <label>
+          <span>Mensaje</span>
+          <textarea name="mensaje" rows="4" required maxlength="1000"
+            placeholder="Cuéntanos qué quieres saber: horarios, ubicación, cómo unirte..."></textarea>
+        </label>
+
+        <button type="submit" class="btn-form"><i class="ri-send-ins-line"></i> Enviar mensaje</button>
+        <p id="form-estado" class="form-estado" role="status" aria-live="polite"></p>
+      </form>
+    </section>
   </main>
+
+  <script>
+    const form = document.getElementById('form-contacto');
+    const estadoEl = document.getElementById('form-estado');
+
+    function setEstado(texto, esError = false, esExito = false) {
+      estadoEl.textContent = texto;
+      estadoEl.className = 'form-estado' + (esError ? ' error' : '') + (esExito ? ' ok' : '');
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      const datos = Object.fromEntries(new FormData(form));
+
+      if (datos.access_key === 'TU_ACCESS_KEY_DE_WEB3FORMS') {
+        setEstado('⚠️ Configura tu access key de Web3Forms en src/data/site.json', true);
+        return;
+      }
+
+      btn.disabled = true;
+      setEstado('Enviando…');
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(datos)
+        });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          setEstado('¡Mensaje enviado! Te responderemos pronto.', false, true);
+          form.reset();
+        } else {
+          setEstado(json.message || 'No se pudo enviar. Escríbenos por WhatsApp.', true);
+        }
+      } catch {
+        setEstado('Error de conexión. Escríbenos por WhatsApp.', true);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
 </BaseLayout>

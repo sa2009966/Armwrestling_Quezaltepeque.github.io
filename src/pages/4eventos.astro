@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import evento from '../data/evento.json';
+import site from '../data/site.json';
 ---
 
 <BaseLayout
@@ -77,4 +78,37 @@ import evento from '../data/evento.json';
       <a href="/5contactos" class="btn-eventos">Unirme al club <i class="ri-arrow-right-line"></i></a>
     </section>
   </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: `Vendettas — ${site.nombre}`,
+    description: 'Vendettas de lucha de brazos: rivalidad, respeto y fuerza. Enfrentamientos 1 vs 1, mejor de 5.',
+    startDate: evento.fechaISO.inicio,
+    endDate: evento.fechaISO.fin,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: [`${site.dominio}/fotos/eventos.webp`],
+    location: {
+      '@type': 'Place',
+      name: evento.lugar,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: evento.lugar,
+        addressLocality: 'Quezaltepeque',
+        addressRegion: 'La Libertad',
+        addressCountry: 'SV'
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: site.ubicacion.coords.lat,
+        longitude: site.ubicacion.coords.lng
+      }
+    },
+    organizer: {
+      '@type': 'SportsOrganization',
+      name: site.nombre,
+      url: `${site.dominio}/`
+    }
+  })} />
 </BaseLayout>
