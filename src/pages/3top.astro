@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TopCard from '../components/TopCard.astro';
 import tops from '../data/tops.json';
+
+const fila = (t) => {
+  const [g, p] = t.record.marcador.split('-');
+  return { ...t, ganadas: g.trim(), perdidas: p.trim() };
+};
+const filas = tops.map(fila);
 ---
 
 <BaseLayout
@@ -31,9 +36,24 @@ import tops from '../data/tops.json';
     </section>
 
     <section id="top" class="inicio-tops">
-      <div class="container-tops">
-        {tops.map(top => <TopCard top={top} />)}
-      </div>
+      <h2 class="standings-title fade-in">CLASIFICACIÓN <span>· TEMPORADA {new Date().getFullYear()}</span></h2>
+      <ol class="standings">
+        {filas.map(top => (
+          <li class="standing fade-in">
+            <span class="standing-pos">{top.ranking}</span>
+            <img class="standing-foto" src={top.foto.src} width={top.foto.width} height={top.foto.height} alt={top.foto.alt} loading="lazy" decoding="async">
+            <div class="standing-info">
+              <strong>{top.nombre}</strong>
+              <span>{top.peso} · {top.estilo}</span>
+            </div>
+            <div class="standing-record">
+              <b>{top.ganadas}</b>–<i>{top.perdidas}</i>
+              <small>{top.record.porcentaje}</small>
+            </div>
+            <a class="standing-link" href={`/detalles-tops/${top.slug}`} aria-label={`Ver ficha de ${top.nombre}`}>Ficha</a>
+          </li>
+        ))}
+      </ol>
     </section>
   </main>
 </BaseLayout>

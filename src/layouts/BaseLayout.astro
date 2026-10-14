@@ -33,6 +33,7 @@ const url = `${site.dominio}${canonical}`;
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/redesign.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -64,7 +65,7 @@ const url = `${site.dominio}${canonical}`;
       });
 
       // ---- Entrada escalonada de tarjetas ----
-      const grupos = ['.container-tops', '.container-entrenamientos', '.combates-mobile', '.estadisticas2'];
+      const grupos = ['.container-tops', '.container-entrenamientos', '.combates-mobile', '.estadisticas2', '.matches-grid', '.standings', '.podio'];
       grupos.forEach(sel => {
         document.querySelectorAll(sel + ' > .fade-in').forEach((el, i) => {
           if (prefersReduced) return;

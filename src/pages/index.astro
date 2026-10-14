@@ -5,8 +5,9 @@ import tops from '../data/tops.json';
 import pilares from '../data/pilares.json';
 import site from '../data/site.json';
 
-const top5 = tops.slice(0, 5);
+const podio = tops.slice(0, 3);
 const { lat, lng, zoom } = site.ubicacion.coords;
+const cinta = ['FUERZA', 'DISCIPLINA', 'HONOR', 'VENDETTAS', 'QUEZALTEPEQUE', 'EL SALVADOR'];
 ---
 
 <BaseLayout
@@ -26,6 +27,12 @@ const { lat, lng, zoom } = site.ubicacion.coords;
       </div>
     </section>
 
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        {[0, 1].map(() => cinta.map(p => <span>{p} <b>•</b></span>))}
+      </div>
+    </div>
+
     <section class="inicio-familia">
       <h3>SOMOS MÁS QUE UN DEPORTE,</h3>
       <h2>SOMOS FAMILIA.</h2>
@@ -33,25 +40,6 @@ const { lat, lng, zoom } = site.ubicacion.coords;
         aquí encontrarás un lugar para superarte, <br>
         hacer amigos y representar a Quezaltepeque con orgullo.</p>
       <a href="/5contactos" class="btn3 fade-in">Únete <i class="ri-send-ins-line"></i></a>
-    </section>
-
-    <section class="seo-context" aria-labelledby="seo-context-title">
-      <div class="seo-context-inner">
-        <p class="seo-context-kicker">COMUNIDAD SALVADOREÑA</p>
-        <h2 id="seo-context-title">Armwrestling en El Salvador: conoce la lucha de brazos</h2>
-        <p><strong>Armwrestling Quezaltepeque</strong> es un club de lucha de brazos ubicado en Quezaltepeque, La Libertad, El Salvador. Entrenamos técnica, fuerza y control, y trabajamos para que nuestros atletas progresen y compitan con responsabilidad.</p>
-        <p>Si buscas dónde practicar <strong>armwrestling en El Salvador</strong> o quieres conocer más sobre la <strong>lucha de brazos en El Salvador</strong>, puedes consultar el ranking de atletas, las vendettas y las actividades del club. Nuestro punto de entrenamiento es el Parque Central Norberto Morán, en Quezaltepeque. Escríbenos para confirmar la próxima sesión antes de desplazarte, ya que el horario puede cambiar.</p>
-        <div class="seo-context-links">
-          <a href="/5contactos">Consultar entrenamientos</a>
-          <a href="/3top">Ver ranking del club</a>
-        </div>
-        <div class="seo-context-faq">
-          <h3>¿Armwrestling y lucha de brazos son lo mismo?</h3>
-          <p>Sí. Armwrestling es el término en inglés para lucha de brazos, también conocida popularmente como pulso. Es un deporte en el que la técnica, el agarre, el control y la fuerza importan.</p>
-          <h3>¿Dónde entrena Armwrestling Quezaltepeque?</h3>
-          <p>Entrenamos en Quezaltepeque, departamento de La Libertad, El Salvador. Contacta al club para confirmar la ubicación y el horario actual antes de asistir.</p>
-        </div>
-      </div>
     </section>
 
     <section class="inicio-entrenamiento">
@@ -73,11 +61,11 @@ const { lat, lng, zoom } = site.ubicacion.coords;
 
     <section class="inicio-tops">
       <div class="container-top-texto">
-        <h2>CONOCE NUESTRO TOP</h2>
-        <a href="/3top" class="btn4">Ver más</a>
+        <h2>EL RANKING SE GANA EN LA MESA</h2>
+        <a href="/3top" class="btn4">Ver ranking completo</a>
       </div>
-      <div class="container-tops">
-        {top5.map(top => <TopCard top={top} />)}
+      <div class="podio">
+        {podio.map(top => <TopCard top={top} />)}
       </div>
     </section>
 
@@ -118,6 +106,24 @@ const { lat, lng, zoom } = site.ubicacion.coords;
           <p><i class="ri-whatsapp-line"></i> 7868-3237</p>
           <p><i class="ri-map-pin-line"></i> Quezaltepeque, La Libertad</p>
         </div>
+      </div>
+    </section>
+
+    <section class="seo-context" aria-labelledby="seo-context-title">
+      <div class="seo-context-inner">
+        <details>
+          <summary id="seo-context-title">Armwrestling en El Salvador: conoce la lucha de brazos</summary>
+          <p><strong>Armwrestling Quezaltepeque</strong> es un club de lucha de brazos ubicado en Quezaltepeque, La Libertad, El Salvador. Entrenamos técnica, fuerza y control, y trabajamos para que nuestros atletas progresen y compitan con responsabilidad.</p>
+          <p>Si buscas dónde practicar <strong>armwrestling en El Salvador</strong> o quieres conocer más sobre la <strong>lucha de brazos en El Salvador</strong>, puedes consultar el <a href="/3top">ranking de atletas</a>, las <a href="/4eventos">vendettas</a> y las actividades del club. Nuestro punto de entrenamiento es el Parque Central Norberto Morán, en Quezaltepeque. Escríbenos para confirmar la próxima sesión antes de desplazarte, ya que el horario puede cambiar.</p>
+        </details>
+        <details>
+          <summary>¿Armwrestling y lucha de brazos son lo mismo?</summary>
+          <p>Sí. Armwrestling es el término en inglés para lucha de brazos, también conocida popularmente como pulso. Es un deporte en el que la técnica, el agarre, el control y la fuerza importan.</p>
+        </details>
+        <details>
+          <summary>¿Dónde entrena Armwrestling Quezaltepeque?</summary>
+          <p>Entrenamos en Quezaltepeque, departamento de La Libertad, El Salvador. <a href="/5contactos">Contacta al club</a> para confirmar la ubicación y el horario actual antes de asistir.</p>
+        </details>
       </div>
     </section>
   </main>

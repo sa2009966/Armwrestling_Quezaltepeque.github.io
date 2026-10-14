@@ -4,20 +4,21 @@ import tops from '../../data/tops.json';
 import site from '../../data/site.json';
 
 export function getStaticPaths() {
-  return tops.map(top => ({
+  return tops.map((top, i) => ({
     params: { slug: top.slug },
-    props: { top },
+    props: { top, i },
   }));
 }
 
-const { top } = Astro.props;
+const { top, i } = Astro.props;
+const prev = tops[(i - 1 + tops.length) % tops.length];
+const next = tops[(i + 1) % tops.length];
 const stats = [
   { label: 'Fuerza', valor: top.stats.fuerza, icono: 'ri-arrow-up-long-fill' },
   { label: 'Velocidad', valor: top.stats.velocidad, icono: 'ri-flashlight-line' },
   { label: 'Resistencia', valor: top.stats.resistencia, icono: 'ri-shield-line' },
   { label: 'Técnica', valor: top.stats.tecnica, icono: 'ri-brain-line' },
 ];
-const fichas = tops.map(t => ({ href: `/detalles-tops/${t.slug}`, nombre: t.nombre, activo: t.slug === top.slug }));
 ---
 
 <BaseLayout
@@ -28,6 +29,7 @@ const fichas = tops.map(t => ({ href: `/detalles-tops/${t.slug}`, nombre: t.nomb
 >
   <main>
     <section class="info-1">
+      <span class="watermark" aria-hidden="true">{i + 1}</span>
       <div class="estaditicas1">
         <h3>{top.nombre}</h3>
         <p><img src="/fotos/flag-sv.svg" width="1005" height="567" alt="bandera de El Salvador"> {top.pais}</p>
@@ -68,6 +70,7 @@ const fichas = tops.map(t => ({ href: `/detalles-tops/${t.slug}`, nombre: t.nomb
               {s.label}: <br>
               <p>{s.valor}<span>/100</span></p>
             </div>
+            <div class="stat-bar" aria-hidden="true"><span style={`--v:${s.valor}`}></span></div>
           </div>
         ))}
       </div>
@@ -110,9 +113,11 @@ const fichas = tops.map(t => ({ href: `/detalles-tops/${t.slug}`, nombre: t.nomb
       </div>
     </section>
 
-    <section class="ficha-nav">
-      <a href="/3top" class="btn-detalles"><i class="ri-arrow-left-line"></i> Volver al ranking</a>
-    </section>
+    <nav class="ficha-nav" aria-label="Otros luchadores del ranking">
+      <a href={`/detalles-tops/${prev.slug}`}><i class="ri-arrow-left-line"></i> <span>{prev.nombre}</span></a>
+      <a href="/3top"><i class="ri-list-ordered"></i> Ranking</a>
+      <a href={`/detalles-tops/${next.slug}`}><span>{next.nombre}</span> <i class="ri-arrow-right-line"></i></a>
+    </nav>
   </main>
 
   <script type="application/ld+json" set:html={JSON.stringify({
