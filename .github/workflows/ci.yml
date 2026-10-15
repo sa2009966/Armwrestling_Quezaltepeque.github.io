@@ -25,6 +25,7 @@ jobs:
           PAGINAS=$(find dist -name index.html | wc -l)
           echo "Páginas generadas: $PAGINAS"
           [ "$PAGINAS" -eq 15 ] || { echo "ERROR: se esperaban 15 páginas"; exit 1; }
-          [ -f dist/style.css ] || { echo "ERROR: falta style.css"; exit 1; }
+          find dist -name '*.css' | grep -q . || { echo "ERROR: falta el CSS compilado"; exit 1; }
           [ -f dist/robots.txt ] || { echo "ERROR: falta robots.txt"; exit 1; }
+          ! grep -rl "leaflet" dist --include='*.html' || { echo "ERROR: leaflet no debería estar en el HTML"; exit 1; }
           echo "CI OK"

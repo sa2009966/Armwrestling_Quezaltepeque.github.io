@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import { foto } from '../lib/fotos';
+
 const paginas = [
   { href: '/', texto: 'Inicio' },
   { href: '/2nosotros', texto: 'Nosotros' },
@@ -10,7 +13,19 @@ const actual = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <header>
-  <div class="container-logo"><img src="/fotos/logo1x1.webp" width="957" height="987" alt="Logo de Armwrestling Quezaltepeque" class="logo"></div>
+  <div class="container-logo">
+    <Image
+      src={foto('/fotos/logo1x1.webp')}
+      widths={[96, 192, 288]}
+      sizes="96px"
+      width={96}
+      height={99}
+      alt="Logo de Armwrestling Quezaltepeque"
+      class="logo"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
   <div class="container-icon-menu" id="icon">☰</div>
   <div class="container-menu" id="menu">
     {paginas.map(p => (

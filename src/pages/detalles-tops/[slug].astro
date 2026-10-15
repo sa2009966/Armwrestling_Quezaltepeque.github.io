@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import tops from '../../data/tops.json';
 import site from '../../data/site.json';
+import { foto } from '../../lib/fotos';
 
 export function getStaticPaths() {
   return tops.map((top, i) => ({
@@ -32,7 +34,7 @@ const stats = [
       <span class="watermark" aria-hidden="true">{i + 1}</span>
       <div class="estaditicas1">
         <h3>{top.nombre}</h3>
-        <p><img src="/fotos/flag-sv.svg" width="1005" height="567" alt="bandera de El Salvador"> {top.pais}</p>
+        <p><img src="/fotos/flag-sv.webp" width="128" height="72" alt="bandera de El Salvador"> {top.pais}</p>
         <p>Peso: <br> <span>{top.peso}</span></p>
         <p>Altura: <br> <span>{top.altura}</span></p>
         <p>Edad: <br> <span>{top.edad}</span></p>
@@ -40,7 +42,14 @@ const stats = [
         <p>Mano dominante: <br> <span>{top.mano}</span></p>
       </div>
       <div class="foto-detalles">
-        <img src={top.foto.src} width={top.foto.width} height={top.foto.height} alt={top.foto.alt}>
+        <Image
+          src={foto(top.foto.src)}
+          widths={[400, 640, 900]}
+          sizes="(max-width: 860px) 92vw, 480px"
+          alt={top.foto.alt}
+          fetchpriority="high"
+          decoding="async"
+        />
       </div>
       <div class="posicionamiento">
         <div class="ranking">
@@ -52,7 +61,7 @@ const stats = [
       </div>
       <div class="estaditicas-mobil">
         <h3>{top.nombre}</h3>
-        <p><img src="/fotos/flag-sv.svg" width="1005" height="567" alt="bandera de El Salvador"> {top.pais}</p>
+        <p><img src="/fotos/flag-sv.webp" width="128" height="72" alt="bandera de El Salvador"> {top.pais}</p>
         <p>Peso: <span>{top.peso}</span></p>
         <p>Altura: <span>{top.altura}</span></p>
         <p>Edad: <span>{top.edad}</span></p>
@@ -68,7 +77,7 @@ const stats = [
             <div class="estadistica-icon"><i class={s.icono}></i></div>
             <div class="estadistica-texto">
               {s.label}: <br>
-              <p>{s.valor}<span>/100</span></p>
+              <p><span data-count={s.valor}>{s.valor}</span><span>/100</span></p>
             </div>
             <div class="stat-bar" aria-hidden="true"><span style={`--v:${s.valor}`}></span></div>
           </div>

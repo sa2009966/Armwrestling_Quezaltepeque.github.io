@@ -88,8 +88,13 @@ import site from '../data/site.json';
   </main>
 
   <script>
-    const form = document.getElementById('form-contacto');
-    const estadoEl = document.getElementById('form-estado');
+    const formsVinculados = new WeakSet();
+
+    function vincularFormulario() {
+      const form = document.getElementById('form-contacto');
+      const estadoEl = document.getElementById('form-estado');
+      if (!form || !estadoEl || formsVinculados.has(form)) return;
+      formsVinculados.add(form);
 
     function setEstado(texto, esError = false, esExito = false) {
       estadoEl.textContent = texto;
@@ -127,5 +132,10 @@ import site from '../data/site.json';
         btn.disabled = false;
       }
     });
+    }
+
+    // Primera carga + navegaciones cliente (ClientRouter)
+    vincularFormulario();
+    document.addEventListener('astro:page-load', vincularFormulario);
   </script>
 </BaseLayout>

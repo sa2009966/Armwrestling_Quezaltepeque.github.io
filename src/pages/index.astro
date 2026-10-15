@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TopCard from '../components/TopCard.astro';
 import tops from '../data/tops.json';
 import pilares from '../data/pilares.json';
 import site from '../data/site.json';
+import { foto } from '../lib/fotos';
 
 const podio = tops.slice(0, 3);
 const { lat, lng, zoom } = site.ubicacion.coords;
@@ -14,6 +16,7 @@ const cinta = ['FUERZA', 'DISCIPLINA', 'HONOR', 'VENDETTAS', 'QUEZALTEPEQUE', 'E
   title="Armwrestling El Salvador | Quezaltepeque"
   description="Conoce Armwrestling Quezaltepeque, un club de lucha de brazos en El Salvador. Consulta entrenamientos, ranking, eventos y cómo unirte al equipo en La Libertad."
   canonical="/"
+  preload="/fotos/inicio.webp"
 >
   <main>
     <section class="inicio fade-in">
@@ -78,7 +81,21 @@ const cinta = ['FUERZA', 'DISCIPLINA', 'HONOR', 'VENDETTAS', 'QUEZALTEPEQUE', 'E
         <p>{site.horarios.principal} <br>
           {site.horarios.nota}</p>
       </div>
-      <div id="mapa" class="fade-in"></div>
+      <div id="mapa" class="fade-in">
+        <iframe
+          src={`https://maps.google.com/maps?q=${lat},${lng}&z=${zoom}&hl=es&output=embed`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa: ubicación del club en Quezaltepeque"
+          allowfullscreen
+        ></iframe>
+        <a
+          class="btn-ruta"
+          href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
+          target="_blank"
+          rel="noopener"
+        ><i class="ri-map-pin-line"></i> Cómo llegar</a>
+      </div>
     </section>
 
     <section class="inicio-final">
@@ -89,7 +106,15 @@ const cinta = ['FUERZA', 'DISCIPLINA', 'HONOR', 'VENDETTAS', 'QUEZALTEPEQUE', 'E
           <a href="/5contactos" class="btn6">Contactar <i class="ri-send-ins-line"></i></a>
         </div>
         <div class="container-final-logo fade-in">
-          <img src="/fotos/logo1x1.webp" width="957" height="987" alt="">
+          <Image
+            src={foto('/fotos/logo1x1.webp')}
+            widths={[192, 288, 384]}
+            sizes="(max-width: 700px) 40vw, 220px"
+            width={192}
+            height={198}
+            alt=""
+            loading="lazy"
+          />
         </div>
         <hr>
         <div class="container-final-contactos fade-in">
@@ -146,17 +171,4 @@ const cinta = ['FUERZA', 'DISCIPLINA', 'HONOR', 'VENDETTAS', 'QUEZALTEPEQUE', 'E
     },
     sameAs: [site.contactos.instagram, site.contactos.tiktok]
   })} />
-
-  <script>
-    import L from 'leaflet';
-    import 'leaflet/dist/leaflet.css';
-
-    const map = L.map('mapa').setView([13.83106425332837, -89.27216705459757], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-    L.marker([13.83106425332837, -89.27216705459757]).addTo(map)
-      .bindPopup('Aquí entrenamos')
-      .openPopup();
-  </script>
 </BaseLayout>

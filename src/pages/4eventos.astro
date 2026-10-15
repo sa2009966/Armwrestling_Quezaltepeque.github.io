@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import evento from '../data/evento.json';
 import site from '../data/site.json';
+import { foto } from '../lib/fotos';
 ---
 
 <BaseLayout
@@ -53,7 +55,16 @@ import site from '../data/site.json';
                 <>
                   {i > 0 && <div class="versus">VS</div>}
                   <a class="fighter" href={f.href}>
-                    <div class="portrait"><img src={f.foto} alt={f.alt} loading="lazy" decoding="async"></div>
+                    <div class="portrait">
+                      <Image
+                        src={foto(f.foto)}
+                        widths={[200, 320, 440]}
+                        sizes="(max-width: 700px) 38vw, 220px"
+                        alt={f.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
                     <strong>{f.nombre}</strong><span>{f.top}</span>
                     {f.resultado && <strong>{f.resultado}</strong>}
                   </a>

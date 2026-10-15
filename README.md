@@ -15,7 +15,9 @@ src/
   layouts/BaseLayout.astro   ← head SEO, fonts, menú, scripts globales
   components/            ← Header, Footer (2 variantes), TopCard
   pages/                 ← 5 páginas + [slug].astro (genera las 10 fichas)
-public/                  ← fotos, style.css, robots.txt, sitemap.xml
+public/                  ← favicon, fotos de fondo/hero, robots.txt, sitemap.xml
+src/styles/              ← site.css (hoja única) + remixicon.css
+src/assets/fotos/        ← fotos de <img> (procesadas por astro:assets: AVIF/WebP + srcset)
 ```
 
 ## Cómo actualizar el contenido

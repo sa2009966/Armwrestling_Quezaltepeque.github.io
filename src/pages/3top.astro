@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import tops from '../data/tops.json';
+import { foto } from '../lib/fotos';
 
 const fila = (t) => {
   const [g, p] = t.record.marcador.split('-');
@@ -31,7 +33,14 @@ const filas = tops.map(fila);
         </div>
       </div>
       <div class="top-inicio-img">
-        <img fetchpriority="high" src="/fotos/top-banner.webp" width="1386" height="752" alt="Atletas entrenando lucha de brazos" decoding="async">
+        <Image
+          src={foto('/fotos/top-banner.webp')}
+          widths={[480, 768, 1200, 1386]}
+          sizes="100vw"
+          alt="Atletas entrenando lucha de brazos"
+          fetchpriority="high"
+          decoding="async"
+        />
       </div>
     </section>
 
@@ -41,13 +50,23 @@ const filas = tops.map(fila);
         {filas.map(top => (
           <li class="standing fade-in">
             <span class="standing-pos">{top.ranking}</span>
-            <img class="standing-foto" src={top.foto.src} width={top.foto.width} height={top.foto.height} alt={top.foto.alt} loading="lazy" decoding="async">
+            <Image
+              class="standing-foto"
+              src={foto(top.foto.src)}
+              widths={[64, 128]}
+              sizes="64px"
+              width={64}
+              height={90}
+              alt={top.foto.alt}
+              loading="lazy"
+              decoding="async"
+            />
             <div class="standing-info">
               <strong>{top.nombre}</strong>
               <span>{top.peso} · {top.estilo}</span>
             </div>
             <div class="standing-record">
-              <b>{top.ganadas}</b>–<i>{top.perdidas}</i>
+              <b data-count={top.ganadas}>{top.ganadas}</b>–<i data-count={top.perdidas}>{top.perdidas}</i>
               <small>{top.record.porcentaje}</small>
             </div>
             <a class="standing-link" href={`/detalles-tops/${top.slug}`} aria-label={`Ver ficha de ${top.nombre}`}>Ficha</a>

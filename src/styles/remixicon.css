@@ -1,0 +1,32 @@
+/* Remixicon subset: solo los iconos usados (2.9KB) */
+@font-face {
+    font-family: "remixicon";
+    src: url("/remixicon-subset.woff2") format("woff2");
+    font-display: block;
+}
+.ri-arrow-left-line:before { content: "\ea60"; }
+.ri-arrow-right-line:before { content: "\ea6c"; }
+.ri-calendar-event-fill:before { content: "\eb24"; }
+.ri-eye-line:before { content: "\ecb5"; }
+.ri-flag-fill:before { content: "\ed3a"; }
+.ri-flashlight-line:before { content: "\ed3d"; }
+.ri-focus-2-line:before { content: "\ed4a"; }
+.ri-function-line:before { content: "\ed9e"; }
+.ri-group-fill:before { content: "\ede2"; }
+.ri-instagram-line:before { content: "\ee66"; }
+.ri-list-ordered:before { content: "\eebb"; }
+.ri-map-pin-2-fill:before { content: "\ef09"; }
+.ri-map-pin-line:before { content: "\ef14"; }
+.ri-medal-fill:before { content: "\ef27"; }
+.ri-shield-line:before { content: "\f108"; }
+.ri-team-fill:before { content: "\f1ed"; }
+.ri-team-line:before { content: "\f1ee"; }
+.ri-time-line:before { content: "\f20f"; }
+.ri-trophy-fill:before { content: "\f22e"; }
+.ri-trophy-line:before { content: "\f22f"; }
+.ri-whatsapp-line:before { content: "\f2bc"; }
+.ri-brain-line:before { content: "\f2f7"; }
+.ri-tiktok-fill:before { content: "\f372"; }
+.ri-tiktok-line:before { content: "\f373"; }
+.ri-arrow-up-long-fill:before { content: "\f5de"; }
+.ri-send-ins-line:before { content: "\f668"; }

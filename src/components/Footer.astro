@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import site from '../data/site.json';
+import { foto } from '../lib/fotos';
 
 interface Props {
   variant?: 'simple' | 'eventos';
@@ -16,7 +18,15 @@ const { variant = 'simple' } = Astro.props;
   <footer class="eventos-footer">
     <div class="eventos-footer-top">
       <div class="eventos-footer-brand">
-        <img src="/fotos/logo1x1.webp" width="957" height="987" alt="Armwrestling Quezaltepeque">
+        <Image
+          src={foto('/fotos/logo1x1.webp')}
+          widths={[64, 128]}
+          sizes="64px"
+          width={64}
+          height={66}
+          alt="Armwrestling Quezaltepeque"
+          loading="lazy"
+        />
         <div><b>ARMWRESTLING</b><small>QUEZALTEPEQUE</small></div>
       </div>
 

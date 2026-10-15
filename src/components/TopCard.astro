@@ -1,4 +1,7 @@
 ---
+import { Picture } from 'astro:assets';
+import { foto } from '../lib/fotos';
+
 interface Props {
   top: {
     id: number;
@@ -13,9 +16,18 @@ interface Props {
 const { top } = Astro.props;
 ---
 
-<div class="top-1 fade-in">
+<div class="top-1 fade-in" data-tilt>
   <div class="numero-top">{top.ranking}</div>
-  <img src={top.foto.src} width={top.foto.width} height={top.foto.height} alt={top.foto.alt} loading="lazy" decoding="async">
+  <Picture
+    src={foto(top.foto.src)}
+    formats={['avif', 'webp']}
+    fallbackFormat="webp"
+    widths={[220, 360, 520]}
+    sizes="(max-width: 560px) 42vw, 300px"
+    alt={top.foto.alt}
+    loading="lazy"
+    decoding="async"
+  />
   <h2>{top.nombre}</h2>
   <p>Peso: <span>{top.peso}</span></p>
   <a href={`/detalles-tops/${top.slug}`} class="btn-detalles">Ver detalles</a>

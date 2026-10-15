@@ -2,6 +2,17 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
+import { ClientRouter } from 'astro:transitions';
+
+import '@fontsource-variable/montserrat/wght.css';
+import '@fontsource-variable/oswald/wght.css';
+import '@fontsource/bebas-neue/latin-400.css';
+import '@fontsource/archivo-black/latin-400.css';
+import '../styles/site.css';
+import '../styles/remixicon.css';
+
+import bebasWoff2 from '@fontsource/bebas-neue/files/bebas-neue-latin-400-normal.woff2?url';
+import montserratWoff2 from '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -9,9 +20,10 @@ interface Props {
   canonical: string;
   ogImage?: string;
   footer?: 'simple' | 'eventos';
+  preload?: string;
 }
 
-const { title, description, canonical, ogImage = '/fotos/logo1x1.webp', footer = 'simple' } = Astro.props;
+const { title, description, canonical, ogImage = '/fotos/logo1x1.webp', footer = 'simple', preload } = Astro.props;
 const url = `${site.dominio}${canonical}`;
 ---
 
@@ -21,7 +33,12 @@ const url = `${site.dominio}${canonical}`;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
-    <link rel="icon" href="/fotos/logo1x1.webp">
+    <link rel="icon" type="image/webp" href="/fotos/favicon-48.webp">
+    <link rel="apple-touch-icon" href="/fotos/apple-touch-icon.png">
+    {preload && <link rel="preload" as="image" href={preload} fetchpriority="high">}
+    <link rel="preload" as="font" type="font/woff2" href={bebasWoff2} crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href={montserratWoff2} crossorigin>
+    <ClientRouter />
     <link rel="canonical" href={url}>
     <meta name="description" content={description}>
     <meta property="og:title" content={title}>
@@ -31,101 +48,198 @@ const url = `${site.dominio}${canonical}`;
     <meta property="og:locale" content="es_SV">
     <meta property="og:type" content="website">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#000000">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/redesign.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css">
+    <meta name="theme-color" content="#0a1431">
   </head>
   <body>
+    <div id="barra-progreso" aria-hidden="true"></div>
     <Header />
     <slot />
     <Footer variant={footer} />
     <script>
-      // ---- Animaciones de aparición al hacer scroll ----
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+      // Reveal on scroll + menú + animaciones. Se inicializa al cargar y
+      // de nuevo tras cada navegación cliente (ClientRouter). Los WeakSet
+      // evitan doble inicialización de los mismos elementos.
+      let escapeBound = false;
+      let progresoBound = false;
+      const observados = new WeakSet();
+      const contadores = new WeakSet();
+      const tiltados = new WeakSet();
+      const menus = new WeakSet();
+
+      const prefersReduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function initReveal() {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            } else {
+              entry.target.classList.remove('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+          if (observados.has(el)) return;
+          observados.add(el);
+          if (prefersReduced()) {
+            el.classList.add('visible');
           } else {
-            entry.target.classList.remove('visible');
+            observer.observe(el);
           }
         });
-      }, { threshold: 0.1 });
 
-      document.querySelectorAll('.fade-in').forEach(el => {
-        if (prefersReduced) {
-          el.classList.add('visible');
-        } else {
-          observer.observe(el);
-        }
-      });
-
-      // ---- Entrada escalonada de tarjetas ----
-      const grupos = ['.container-tops', '.container-entrenamientos', '.combates-mobile', '.estadisticas2', '.matches-grid', '.standings', '.podio'];
-      grupos.forEach(sel => {
-        document.querySelectorAll(sel + ' > .fade-in').forEach((el, i) => {
-          if (prefersReduced) return;
-          el.style.transitionDelay = (i * 90) + 'ms';
-          el.addEventListener('transitionend', function liberar(e) {
-            if (e.target !== el) return;
-            el.style.transitionDelay = '';
-            el.removeEventListener('transitionend', liberar);
+        // ---- Entrada escalonada de tarjetas ----
+        const grupos = ['.container-tops', '.container-entrenamientos', '.combates-mobile', '.estadisticas2', '.matches-grid', '.standings', '.podio'];
+        grupos.forEach(sel => {
+          document.querySelectorAll(sel + ' > .fade-in').forEach((el, i) => {
+            if (prefersReduced()) return;
+            el.style.transitionDelay = (i * 90) + 'ms';
+            el.addEventListener('transitionend', function liberar(e) {
+              if (e.target !== el) return;
+              el.style.transitionDelay = '';
+              el.removeEventListener('transitionend', liberar);
+            });
           });
         });
-      });
+      }
 
-      // ---- Menú ----
-      const menu = document.getElementById('menu');
-      const icon = document.getElementById('icon');
-      const overlay = document.getElementById('overlay');
+      function initCountUp() {
+        if (prefersReduced()) return;
+        document.querySelectorAll('[data-count]').forEach(el => {
+          if (contadores.has(el)) return;
+          contadores.add(el);
+          const destino = parseInt(el.dataset.count || '0', 10);
+          if (!destino) return;
+          const observer = new IntersectionObserver(entries => {
+            if (!entries.some(e => e.isIntersecting)) return;
+            observer.disconnect();
+            const inicio = performance.now();
+            const duracion = 900;
+            const paso = (t: number) => {
+              const p = Math.min(1, (t - inicio) / duracion);
+              el.textContent = String(Math.round(destino * (1 - Math.pow(1 - p, 3))));
+              if (p < 1) requestAnimationFrame(paso);
+            };
+            requestAnimationFrame(paso);
+          }, { threshold: 0.4 });
+          observer.observe(el);
+        });
+      }
 
-      if (icon) {
+      function initTilt() {
+        if (prefersReduced() || !window.matchMedia('(hover: hover)').matches) return;
+        document.querySelectorAll('[data-tilt]').forEach(card => {
+          if (tiltados.has(card)) return;
+          tiltados.add(card);
+          card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            card.style.setProperty('--tx', `${(-y * 5).toFixed(2)}deg`);
+            card.style.setProperty('--ty', `${(x * 7).toFixed(2)}deg`);
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--tx', '0deg');
+            card.style.setProperty('--ty', '0deg');
+          });
+        });
+      }
+
+      function initScrollProgress() {
+        if (progresoBound) return;
+        progresoBound = true;
+        let tick = false;
+        const actualizar = () => {
+          tick = false;
+          const el = document.getElementById('barra-progreso');
+          if (!el) return;
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          el.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+        };
+        window.addEventListener('scroll', () => {
+          if (!tick) {
+            tick = true;
+            requestAnimationFrame(actualizar);
+          }
+        }, { passive: true });
+        actualizar();
+      }
+
+      function initMenu() {
+        const menu = document.getElementById('menu');
+        const icon = document.getElementById('icon');
+        const overlay = document.getElementById('overlay');
+        if (!menu || !icon || menus.has(menu)) return;
+        menus.add(menu);
+
         icon.setAttribute('role', 'button');
         icon.tabIndex = 0;
         icon.setAttribute('aria-expanded', 'false');
         icon.setAttribute('aria-controls', 'menu');
         icon.setAttribute('aria-label', 'Abrir menú');
 
-        icon.addEventListener('click', () => toggleMenu());
+        icon.addEventListener('click', () => toggle());
         icon.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            toggleMenu();
+            toggle();
           }
         });
+        overlay?.addEventListener('click', () => cerrar());
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', cerrar));
+
+        function setEstado(abierto: boolean) {
+          icon.setAttribute('aria-expanded', String(abierto));
+          icon.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+          document.body.style.overflow = abierto ? 'hidden' : '';
+        }
+
+        function toggle() {
+          const abierto = menu.classList.toggle('active');
+          overlay?.classList.toggle('active', abierto);
+          icon.innerHTML = abierto ? '✖' : '☰';
+          setEstado(abierto);
+        }
+
+        function cerrar() {
+          menu.classList.remove('active');
+          overlay?.classList.remove('active');
+          icon.innerHTML = '☰';
+          setEstado(false);
+        }
       }
-      if (overlay) overlay.addEventListener('click', () => closeMenu());
 
-      function setMenuState(abierto) {
-        if (!icon) return;
-        icon.setAttribute('aria-expanded', String(abierto));
-        icon.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
-        document.body.style.overflow = abierto ? 'hidden' : '';
+      // Escape a nivel documento: registrado una sola vez por sesión
+      if (!escapeBound) {
+        escapeBound = true;
+        document.addEventListener('keydown', e => {
+          if (e.key !== 'Escape') return;
+          const menu = document.getElementById('menu');
+          if (!menu?.classList.contains('active')) return;
+          menu.classList.remove('active');
+          document.getElementById('overlay')?.classList.remove('active');
+          const icon = document.getElementById('icon');
+          if (icon) {
+            icon.innerHTML = '☰';
+            icon.setAttribute('aria-expanded', 'false');
+          }
+          document.body.style.overflow = '';
+        });
       }
 
-      function toggleMenu() {
-        const abierto = menu.classList.toggle('active');
-        overlay.classList.toggle('active', abierto);
-        icon.innerHTML = abierto ? '✖' : '☰';
-        setMenuState(abierto);
+      function init() {
+        initReveal();
+        initCountUp();
+        initTilt();
+        initMenu();
+        initScrollProgress();
       }
 
-      function closeMenu() {
-        menu.classList.remove('active');
-        overlay.classList.remove('active');
-        icon.innerHTML = '☰';
-        setMenuState(false);
-      }
-
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
-      });
-
-      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+      // Primera carga: init inmediato (el script vive al final del body)
+      init();
+      // Navegación cliente: init tras cada swap
+      document.addEventListener('astro:page-load', init);
     </script>
   </body>
 </html>
